@@ -44,11 +44,15 @@ function SectionIntro({ kicker, title, text }: { kicker: string; title: string; 
   return <div className="section-intro"><span className="section-kicker">{kicker}</span><h2>{title}</h2>{text && <p>{text}</p>}</div>
 }
 
+function ContactFab() {
+  return <div className="contact-fab" aria-label="Liên hệ ERPCloud"><a className="fab-chat" href="https://zalo.me/0909099580"><Bot size={25}/><span><strong>Live chat</strong><small>Zalo 0909099580</small></span></a><a className="fab-call" href="tel:+84909099580"><TerminalSquare size={25}/><span><strong>Gọi tư vấn</strong><small>0909099580</small></span></a></div>
+}
+
 export default function App() {
   const [open, setOpen] = useState<number | null>(null)
   const [menu, setMenu] = useState(false)
   useEffect(() => { const close = () => setMenu(false); window.addEventListener("hashchange", close); return () => window.removeEventListener("hashchange", close) }, [])
-  return <div className="site-shell">
+  return <div className="site-shell"><ContactFab />
     <header className="nav"><a className="brand" href="#top"><img src="/brand/liodev-logo.svg" alt="Liodev" /></a><button className="menu-toggle" onClick={() => setMenu(!menu)} aria-label="Mở menu" aria-expanded={menu}>{menu ? <X/> : <Menu/>}</button><nav className={menu ? "nav-links open" : "nav-links"}><a href="#agents">Agents</a><a href="#architecture">Kiến trúc</a><a href="#control">An toàn</a><a href="#open-source">Open source</a><a href="#faq">FAQ</a><a className="nav-cta" href="https://github.com/itgisgroup/liocode">Xem GitHub <ArrowRight size={15}/></a></nav></header>
     <main id="top">
       <section className="hero"><div className="hero-glow"/><div className="hero-content"><div className="eyebrow"><span className="pulse"/> ERPCloud / Agentic Odoo Development Platform</div><h1>AI Agents hiểu code.<br/><em>Liodev hiểu doanh nghiệp.</em></h1><p>Code editor và AI Agents dành cho Odoo/ERP — hiểu module, quy trình, dữ liệu và kiến trúc để đội ngũ xây dựng nhanh hơn, an toàn hơn.</p><div className="actions"><a className="button primary" href="https://github.com/itgisgroup/liocode"><Github size={18}/> Khám phá Liodev <ArrowRight size={16}/></a><a className="button ghost" href="https://zalo.me/0909099580">Trao đổi cùng ERPCloud</a></div><div className="hero-meta"><span><Check size={14}/> Local-first</span><span><Check size={14}/> Provider-neutral</span><span><Check size={14}/> Odoo-native context</span></div></div><div className="hero-product"><div className="surface-switcher"><span className="switcher-label">BẮT ĐẦU Ở ĐÂU?</span><button className="is-active">Desktop</button><button>Web</button><button>CLI</button><button>Headless</button></div><ControlRoom /></div></section>
