@@ -1,0 +1,22 @@
+name: Liodev website
+
+on:
+  push:
+    branches: [liodev-website]
+    paths: ["apps/website/**", ".github/workflows/liodev-website.yml"]
+  pull_request:
+    paths: ["apps/website/**", ".github/workflows/liodev-website.yml"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - run: bun install --frozen-lockfile
+      - run: bun run build
